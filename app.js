@@ -17,6 +17,6 @@ app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public'))); //comment out as we'll have our own public folder
 
 app.use('/', indexRouter);
-app.use('/api/employees', usersRouter);
+app.use('/api', usersRouter);
 
 module.exports = app;
