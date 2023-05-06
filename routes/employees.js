@@ -5,7 +5,7 @@ const db = require("../model/helper")
 //localhost:4000/api
 //test if API is working 
 router.get('/', (req, res, next) => {
-  res.send('Welcom to the API');
+  res.send('Welcome to the API');
 });
   
 /*
@@ -35,7 +35,7 @@ router.post("/", async (req, res, next) => {
   // console.log(req.body)
   try {
     //insert new employee. Id will be auto incremented
-    await db(`INSERT INTO students( employeeId, fullName, address, country, passport, emailAddress, birthDate, phoneNumber, maritalStatus) VALUES ('${employeeId}', '${fullName}', '${address}, '${country}', '${passport}', '${emailAddress}', '${birthDate}', '${phoneNumber}', '${maritalStatus}');`);
+    await db(`INSERT INTO personal_info ( employeeId, fullName, address, country, passport, emailAddress, birthDate, phoneNumber, maritalStatus) VALUES ('${employeeId}', '${fullName}', '${address}, '${country}', '${passport}', '${emailAddress}', '${birthDate}', '${phoneNumber}', '${maritalStatus}');`);
     //get the updated list of students
     let results = await db('SELECT * FROM personal_info;');
     res.send(results.data);
@@ -55,7 +55,7 @@ router.post("/", async (req, res, next) => {
   // console.log(req.body)
   try {
     //insert new employee. Id will be auto incremented
-    await db(`INSERT INTO students(employeeId, department, epfNumber, SOCSO, startDate) VALUES ('${employeeId}', '${department}', '${epfNumber}', '${SOCSO}', '${startDate}');`);
+    await db(`INSERT INTO work_info(employeeId, department, epfNumber, SOCSO, startDate) VALUES ('${employeeId}', '${department}', '${epfNumber}', '${SOCSO}', '${startDate}');`);
     //get the updated list of students
     let results = await db('SELECT * FROM work_info;');
     res.send(results.data);
