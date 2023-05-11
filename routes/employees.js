@@ -14,7 +14,7 @@ GET employees list
 2. join both tables
 3. view data via postman GET: localhost:4000/api/employees
 */ 
-router.get("/employees", async (req, res, next) =>{
+router.get("/", async (req, res, next) =>{
   try {
     let results = await db('SELECT p.employeeId, p.fullName, p.address, p.country, p.passport, p.emailAddress, p.birthDate, p.phoneNumber, p.maritalStatus, w.department, w.epfNumber, w.SOCSO, w.startDate FROM personal_info p JOIN work_info w ON p.employeeID = w.employeeId;');
     // console.log("RESULTS: ", results)
@@ -55,7 +55,7 @@ GET one employee using query
 4. wrap quote around '${department}' because it is a string 
 5. view data via postman GET: localhost:4000/api/employees?department='${department}'
 */ 
-router.get("/", async (req, res, next) => { 
+router.get("/employees", async (req, res, next) => { 
   try {
     if (req.query.department) {
     let results = await db(`SELECT p.employeeId, p.fullName, p.address, p.country, p.passport, p.emailAddress, p.birthDate, p.phoneNumber, p.maritalStatus, w.department, w.epfNumber, w.SOCSO, w.startDate FROM personal_info p JOIN work_info w ON p.employeeID = w.employeeId WHERE w.department='${req.query.department}'`);
@@ -93,24 +93,24 @@ router.post("/employees", async (req, res, next) => {
   }
 });
 
-// PUT an employee
-//1. write syntax for DELETE FROM personal via mySQL and copy paste here
-//2. view data via postman DELETE: localhost:4000/api/employees/:id
-router.put("employees/:id", async function(req, res, next) {
-  //let id = req.params.id
-  const { employeeId, fullName, address, country, passport, emailAddress, birthDate, phoneNumber, maritalStatus, department, epfNumber, SOCSO, startDate } = req.body;
-  try {
-    //delete students with specified id from database
-    await db(`DELETE FROM personal_info WHERE id = ${id};`); 
-     //delete students with specified id from database
-     await db(`DELETE FROM work_info WHERE id = ${id};`); 
-    //get the updated list of students
-    let results = await db('SELECT p.employeeId, p.fullName, p.address, p.country, p.passport, p.emailAddress, p.birthDate, p.phoneNumber, p.maritalStatus, w.department, w.epfNumber, w.SOCSO, w.startDate FROM personal_info p JOIN work_info w ON p.employeeID = w.employeeId;');
-    res.send(results.data);
-  } catch (err) {
-    res.status(500).send({ error: err.message });
-  }
-});
+// // PUT an employee
+// //1. write syntax for DELETE FROM personal via mySQL and copy paste here
+// //2. view data via postman DELETE: localhost:4000/api/employees/:id
+// router.put("employees/:id", async function(req, res, next) {
+//   //let id = req.params.id
+//   const { employeeId, fullName, address, country, passport, emailAddress, birthDate, phoneNumber, maritalStatus, department, epfNumber, SOCSO, startDate } = req.body;
+//   try {
+//     //delete students with specified id from database
+//     await db(`DELETE FROM personal_info WHERE id = ${id};`); 
+//      //delete students with specified id from database
+//      await db(`DELETE FROM work_info WHERE id = ${id};`); 
+//     //get the updated list of students
+//     let results = await db('SELECT p.employeeId, p.fullName, p.address, p.country, p.passport, p.emailAddress, p.birthDate, p.phoneNumber, p.maritalStatus, w.department, w.epfNumber, w.SOCSO, w.startDate FROM personal_info p JOIN work_info w ON p.employeeID = w.employeeId;');
+//     res.send(results.data);
+//   } catch (err) {
+//     res.status(500).send({ error: err.message });
+//   }
+// });
 
 // DELETE an employee
 //1. write syntax for DELETE FROM personal via mySQL and copy paste here
