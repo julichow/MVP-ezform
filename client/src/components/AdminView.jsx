@@ -3,7 +3,14 @@ import React,  { useState } from 'react';
 function AdminView() {
   return (
     <div>
-   <h1>Coder at work</h1>
+      <form>
+        <div>
+        <input type="text"
+          placeholder="search..."
+          ></input>
+          </div>
+        <button>Download</button>
+   </form>
     </div>
   )
 }
