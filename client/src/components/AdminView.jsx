@@ -17,6 +17,8 @@ function AdminView() {
       const response = await fetch("/api/employees", options);
       const newEmployees = await response.json();
       setEmployees(newEmployees);
+      //for troubleshooting
+      console.log(newEmployees)
     } catch (error) {
       console.log(error);
     }
@@ -39,7 +41,8 @@ function AdminView() {
             <p>{employee.epfNumber}</p>
             <p>{employee.socso}</p>
             <p>{employee.startDate}</p>
-            <p>{employee.url}</p>
+            <img src={employee.url}
+              alt="Passport" />
           </div>
         ))}
       </div>
