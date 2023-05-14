@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import AdminView from './AdminView'; // Import the AdminView component
 
 function UserView() {
   const [formData, setFormData] = useState({
@@ -26,10 +25,20 @@ function UserView() {
   }, []);
 
   const getEmployees = async () => {
+    let options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
     try {
-      const response = await fetch("/api/employees");
-      const employees = await response.json();
-      setEmployees(employees);
+      const response = await fetch("/api/employees", options);
+      if (response.status === 200) {
+        const employeesData = await response.json();
+        setEmployees(employeesData);
+      } else {
+        console.log("Failed to fetch employees.");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -38,9 +47,12 @@ function UserView() {
   const addEmployees = async (employees) => {
     let options = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(employees),
     };
+  
     try {
       const response = await fetch("/api/employees", options);
       const newEmployees = await response.json();
@@ -50,7 +62,7 @@ function UserView() {
     }
   };
 
-  const handleChange = (event) => {
+  const handleInputChange = (event) => {
     const { name, value, type, checked } = event.target;
     const newValue = type === 'checkbox' ? checked : value;
 
@@ -62,7 +74,54 @@ function UserView() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData);
+  
+    const { employeeId, fullName, address, country, passport, emailAddress, birthDate, phoneNumber, maritalStatus, department, epfNumber, SOCSO, startDate } = formData;
+  
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        employeeId,
+        fullName,
+        address,
+        country,
+        passport,
+        emailAddress,
+        birthDate,
+        phoneNumber,
+        maritalStatus,
+        department,
+        epfNumber,
+        SOCSO,
+        startDate,
+      }),
+    };
+  
+    fetch("/api/employees", options)
+      .then((response) => {
+        if (response.status === 200) {
+          setEmployees([...employees, {
+            employeeId,
+            fullName,
+            address,
+            country,
+            passport,
+            emailAddress,
+            birthDate,
+            phoneNumber,
+            maritalStatus,
+            department,
+            epfNumber,
+            SOCSO,
+            startDate,
+          }]);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -75,14 +134,14 @@ function UserView() {
             type="text"
             name="fullName"
             value={formData.fullName}
-            onChange={handleChange}
+            onChange={handleInputChange}
         ></input>
       </label>
       <label>Employee ID:<input 
             type="text"
             name="employeeId"
             value={formData.employeeId}
-            onChange={handleChange}
+            onChange={handleInputChange}
         ></input>
         </label>
       </div>
@@ -91,14 +150,14 @@ function UserView() {
         <input type="text"
               name="country"
               value={formData.country}
-              onChange={handleChange}
+              onChange={handleInputChange}
         ></input>
       </label>
       <label>Passport Number:
             <input type="text"
               name="passportNumber"
               value={formData.passportNumber}
-              onChange={handleChange}
+              onChange={handleInputChange}
         ></input>
         </label>
       </div>
@@ -107,7 +166,7 @@ function UserView() {
             <input type="text"
               name="address"
               value={formData.address}
-              onChange={handleChange}
+              onChange={handleInputChange}
         ></input>
         </label>
       </div>
@@ -116,7 +175,7 @@ function UserView() {
             <input type="text"
               name="phoneNumber"
               value={formData.phoneNumber}
-              onChange={handleChange}
+              onChange={handleInputChange}
         ></input>
       </label>
       <label>Birth Date:
@@ -124,7 +183,7 @@ function UserView() {
               placeholder="mm/dd/yyyy"
               name="birthDate"
               value={formData.birthDate}
-              onChange={handleChange}
+              onChange={handleInputChange}
         ></input>
         </label>
         </div>
@@ -132,14 +191,14 @@ function UserView() {
           <input type="email"
             name="emailAddress"
             value={formData.emailAddress}
-            onChange={handleChange}
+            onChange={handleInputChange}
         ></input>
       </label>
       <label>Marital Status:
           <input type="text"
             name="maritalStatus"
             value={formData.maritalStatus}
-            onChange={handleChange}
+            onChange={handleInputChange}
         ></input>
       </label>
 
@@ -150,7 +209,7 @@ function UserView() {
               placeholder="mm/dd/yyyy" 
               name="startDate"
               value={formData.startDate}
-              onChange={handleChange}
+              onChange={handleInputChange}
         ></input>
       </label>
       <label>Epf Number:
@@ -158,7 +217,7 @@ function UserView() {
               type="text"
               name="epfNumber"
               value={formData.epfNumber}
-              onChange={handleChange}
+              onChange={handleInputChange}
         ></input>
         </label>
       </div>
@@ -167,20 +226,16 @@ function UserView() {
             <input type="text"
               name="department"
               value={formData.department}
-              onChange={handleChange}
+              onChange={handleInputChange}
         ></input>
       </label>
       <label>SOCSO:
-            <input type="checkbox"
+            <input type="typ"
               name="socso"
               value={formData.socso}
-              onChange={handleChange}
+              onChange={handleInputChange}
             ></input>
-      <label for="Yes">Yes</label>
-      <input type="checkbox"
-          ></input>
-      <label for="No">No</label>
-        </label>
+            </label>
         </div>
       <label>
         Please share URL copy of your passport photo:
