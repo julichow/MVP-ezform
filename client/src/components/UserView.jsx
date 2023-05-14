@@ -14,8 +14,8 @@ function UserView() {
     startDate: "",
     epfNumber: "",
     department: "",
-    socso: false,
-    passportPhotoURL: "",
+    socso: "",
+    url: "",
   });
   const [employees, setEmployees] = useState([]);
 
@@ -44,38 +44,19 @@ function UserView() {
     }
   };
 
-  const addEmployees = async (employees) => {
-    let options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(employees),
-    };
-  
-    try {
-      const response = await fetch("/api/employees", options);
-      const newEmployees = await response.json();
-      setEmployees(newEmployees);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const handleInputChange = (event) => {
-    const { name, value, type, checked } = event.target;
-    const newValue = type === 'checkbox' ? checked : value;
-
+    const { name, value } = event.target;
+  
     setFormData((prevData) => ({
       ...prevData,
-      [name]: newValue,
+      [name]: value,
     }));
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
   
-    const { employeeId, fullName, address, country, passport, emailAddress, birthDate, phoneNumber, maritalStatus, department, epfNumber, SOCSO, startDate } = formData;
+    const { employeeId, fullName, address, country, passportNumber, emailAddress, birthDate, phoneNumber, maritalStatus, department, epfNumber, socso, startDate } = formData;
   
     const options = {
       method: "POST",
@@ -87,15 +68,16 @@ function UserView() {
         fullName,
         address,
         country,
-        passport,
+        passportNumber,
         emailAddress,
         birthDate,
         phoneNumber,
         maritalStatus,
         department,
         epfNumber,
-        SOCSO,
+        socso,
         startDate,
+        url: formData.url,
       }),
     };
   
@@ -107,15 +89,16 @@ function UserView() {
             fullName,
             address,
             country,
-            passport,
+            passportNumber,
             emailAddress,
             birthDate,
             phoneNumber,
             maritalStatus,
             department,
             epfNumber,
-            SOCSO,
+            socso,
             startDate,
+            url: formData.url,
           }]);
         }
       })
@@ -230,7 +213,7 @@ function UserView() {
         ></input>
       </label>
       <label>SOCSO:
-            <input type="typ"
+            <input type="text"
               name="socso"
               value={formData.socso}
               onChange={handleInputChange}
@@ -240,7 +223,10 @@ function UserView() {
       <label>
         Please share URL copy of your passport photo:
       <input 
-        type="url"
+            type="text"
+            name="url"
+            value={formData.url}
+            onChange={handleInputChange}
         ></input>
       </label>
       <div>

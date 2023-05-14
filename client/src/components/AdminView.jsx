@@ -39,6 +39,7 @@ function AdminView() {
             <p>{employee.epfNumber}</p>
             <p>{employee.socso}</p>
             <p>{employee.startDate}</p>
+            <p>{employee.url}</p>
           </div>
         ))}
       </div>
