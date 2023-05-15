@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 //receive formArray prop from UserView
-function AdminView({ formArray }) {
+function AdminView() {
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ function AdminView({ formArray }) {
     <div>
       <h1>Employees</h1>
       <div>
-        {formArray.map((employee) => (
+        {employees.map((employee) => (
           <div key={employee.id}>
             <p>Full Name: {employee.fullName}</p>
             <p>Employee ID: {employee.employeeId}</p>
