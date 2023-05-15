@@ -8,10 +8,12 @@ import AdminView from "./components/AdminView";
 //always have function & to export as well 
 function App() {
   const [isAdmin, setIsAdmin] = useState(true);
-  const [projects, setProjects] = useState([]);
+  const [forms, setForms] = useState([]);
 
-  const handleAddProject = (newProject) => {
-    setProjects((state) => [...state, newProject]);
+  //handleAddForm is called when a form is submitted in the UserView component
+  const handleAddForm = (newForms) => {
+//updates the new form to the existing array of forms 
+    setForms((state) => [...state, newForms]);
   };
 
   const handleChangeView = (isAdmin) => {
@@ -20,14 +22,18 @@ function App() {
 
   return (
     <div>
-      <button onClick={() => handleChangeView(true)}>ADMIN</button>
+      {/* selecting admin view tab */}
+      <button onClick={() => handleChangeView(true)}>ADMIN</button> 
+      {/* selecting user view tab */}
       <button onClick={() => handleChangeView(false)}>USER</button>
       {isAdmin
         // 2. using AdminView import component
-        ? (<AdminView addProject={(newProject) => handleAddProject(newProject)} />)
+        //render Admin View and pass the formArray 
+        ? (<AdminView formArray={forms}/>)
         // 2. using UserView import component
         //passing props in react left is prop we'll be passing to UserView and right is the value of the prop
-        : (<UserView projectArray={projects} />)
+        //render UserView and pass the handleAddForm callback
+        : (<UserView addFormArray={(newForms) => handleAddForm(newForms)} />)
       }
     </div>
   )

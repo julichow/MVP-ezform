@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-function UserView() {
+//declare UserView function that accepts a prop call "addFormArray"
+function UserView({ addFormArray }) {
+//intialize the formData state variable with an empty string for each field 
   const [formData, setFormData] = useState({
     fullName: "",
     employeeId: "",
@@ -17,13 +19,16 @@ function UserView() {
     socso: "",
     url: "",
   });
+  //represents list of employees fetched from the server 
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
     // get the list of employees every time the webpage is loaded
     getEmployees();
+    //empty array to ensure the effect runs only once everytime it loads
   }, []);
 
+//GET request to fetch list of employees from the server 
   const getEmployees = async () => {
     let options = {
       method: "GET",
@@ -33,6 +38,7 @@ function UserView() {
     };
     try {
       const response = await fetch("/api/employees", options);
+      //if response is 200, extracts the employee data from the response and updates the employees state using setEmployees
       if (response.status === 200) {
         const employeesData = await response.json();
         setEmployees(employeesData);
@@ -100,6 +106,22 @@ function UserView() {
             startDate,
             url: formData.url,
           }]);
+          addFormArray([...employees, {
+            employeeId,
+            fullName,
+            address,
+            country,
+            passportNumber,
+            emailAddress,
+            birthDate,
+            phoneNumber,
+            maritalStatus,
+            department,
+            epfNumber,
+            socso,
+            startDate,
+            url: formData.url,
+          }])
         }
       })
       .catch((error) => {

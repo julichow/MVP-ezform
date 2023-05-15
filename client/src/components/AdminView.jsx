@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-function AdminView() {
+//receive formArray prop from UserView
+function AdminView({ formArray }) {
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
@@ -8,6 +9,7 @@ function AdminView() {
     getEmployees();
   }, []);
 
+  //fetching list of employees from the servier
   const getEmployees = async () => {
     let options = {
       method: "GET",
@@ -16,6 +18,7 @@ function AdminView() {
     try {
       const response = await fetch("/api/employees", options);
       const newEmployees = await response.json();
+      //fetched employees data will be stored in employees useState using setEmployees 
       setEmployees(newEmployees);
       //for troubleshooting
       console.log(newEmployees)
@@ -28,21 +31,22 @@ function AdminView() {
     <div>
       <h1>Employees</h1>
       <div>
-        {employees.map((employee) => (
+        {formArray.map((employee) => (
           <div key={employee.id}>
-            <h2>{employee.fullName}</h2>
-            <p>{employee.emailAddress}</p>
-            <p>{employee.phoneNumber}</p>
-            <p>{employee.address}</p>
-            <p>{employee.country}</p>
-            <p>{employee.passportNumber}</p>
-            <p>{employee.maritalStatus}</p>
-            <p>{employee.department}</p>
-            <p>{employee.epfNumber}</p>
-            <p>{employee.socso}</p>
-            <p>{employee.startDate}</p>
+            <p>Full Name: {employee.fullName}</p>
+            <p>Employee ID: {employee.employeeId}</p>
+            <p>Email Address: {employee.emailAddress}</p>
+            <p>Phone Number: {employee.phoneNumber}</p>
+            <p>Address: {employee.address}</p>
+            <p>Country: {employee.country}</p>
+            <p>Passport Number: {employee.passportNumber}</p>
+            <p>Marital Status: {employee.maritalStatus}</p>
+            <p>Department: {employee.department}</p>
+            <p>Epf Number: {employee.epfNumber}</p>
+            <p>Socso number: {employee.socso}</p>
+            <p>Employee Start Date: {employee.startDate}</p>
             <img src={employee.url}
-              alt="Passport" />
+              alt="No Passport Photo" />
           </div>
         ))}
       </div>
