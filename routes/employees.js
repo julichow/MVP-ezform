@@ -84,7 +84,7 @@ router.post("/employees", async (req, res, next) => {
     //insert new employee. Id will be auto incremented
     await db(`INSERT INTO personal_info (employeeId, fullName, address, country, passport, emailAddress, birthDate, phoneNumber, maritalStatus) VALUES ('${employeeId}', '${fullName}', '${address}', '${country}', '${passport}', '${emailAddress}', '${birthDate}', '${phoneNumber}', '${maritalStatus}');`);
     //insert new employee. Id will be auto incremented
-     await db(`INSERT INTO work_info(employeeId, department, epfNumber, SOCSO, startDate) VALUES ('${employeeId}', '${department}', '${epfNumber}', '${SOCSO}', '${startDate}');`);
+     await db(`INSERT INTO work_info(employeeId, department, epfNumber, SOCSO, startDate, url) VALUES ('${employeeId}', '${department}', '${epfNumber}', '${SOCSO}', '${startDate}', '${url}');`);
     //get the updated list of students
     let results = await db('SELECT p.employeeId, p.fullName, p.address, p.country, p.passport, p.emailAddress, p.birthDate, p.phoneNumber, p.maritalStatus, w.department, w.epfNumber, w.SOCSO, w.startDate, w.url FROM personal_info p JOIN work_info w ON p.employeeID = w.employeeId;');
     res.send(results.data);
