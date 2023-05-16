@@ -28,30 +28,39 @@ function AdminView() {
   };
 
   return (
-    <div>
-      <h1>Employees</h1>
-      <div>
-        {employees.map((employee) => (
-          <div key={employee.id}>
-            <p>Full Name: {employee.fullName}</p>
-            <p>Employee ID: {employee.employeeId}</p>
-            <p>Email Address: {employee.emailAddress}</p>
-            <p>Phone Number: {employee.phoneNumber}</p>
-            <p>Address: {employee.address}</p>
-            <p>Country: {employee.country}</p>
-            <p>Passport Number: {employee.passportNumber}</p>
-            <p>Marital Status: {employee.maritalStatus}</p>
-            <p>Department: {employee.department}</p>
-            <p>Epf Number: {employee.epfNumber}</p>
-            <p>Socso number: {employee.socso}</p>
-            <p>Employee Start Date: {employee.startDate}</p>
-            <img src={employee.url}
-              alt="No Passport Photo" />
-          </div>
-        ))}
+    <div className="bg-light-grey">
+      <div className="container-fluid">
+        <h3 className="text-dark mt-4">List of Ezform employees</h3>
+        <div className="row">
+          {employees.map((employee) => (
+            <div className="col-lg-2 col-md-4 col-sm-6 mb-4" key={employee.id}>
+              <div className="card">
+                <div className="d-flex justify-content-center align-items-center circle-image-container">
+                  <img src={employee.url} alt="No Passport Photo" className="circle-image" />
+                </div>
+                <div className="card-body">
+                  <h5 className="card-title text-center">{employee.fullName}</h5>
+                  <div className="text-left">
+                    <p className="card-text">Employee ID: {employee.employeeId}</p>
+                    <p className="card-text">Email Address: {employee.emailAddress}</p>
+                    <p className="card-text">Phone Number: {employee.phoneNumber}</p>
+                    <p className="card-text">Address: {employee.address}</p>
+                    <p className="card-text">Country: {employee.country}</p>
+                    <p className="card-text">Passport Number: {employee.passportNumber}</p>
+                    <p className="card-text">Marital Status: {employee.maritalStatus}</p>
+                    <p className="card-text">Department: {employee.department}</p>
+                    <p className="card-text">Epf Number: {employee.epfNumber}</p>
+                    <p className="card-text">Socso number: {employee.socso}</p>
+                    <p className="card-text">Employee Start Date: {employee.startDate}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
-};
+}
 
 export default AdminView;
