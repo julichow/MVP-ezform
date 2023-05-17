@@ -30,13 +30,19 @@ function AdminView() {
   return (
     <div className="bg-light-grey">
       <div className="container-fluid">
-        <h3 className="text-dark mt-4">List of Ezform employees</h3>
+        <h3 className="text-dark mt-4 mb-4" style={{ fontFamily: 'sans-serif' }}>List of Ezform employees</h3>
         <div className="row">
           {employees.map((employee) => (
             <div className="col-lg-2 col-md-4 col-sm-6 mb-4" key={employee.id}>
               <div className="card">
-                <div className="d-flex justify-content-center align-items-center circle-image-container">
-                  <img src={employee.url} alt="No Passport Photo" className="circle-image" />
+                {/* Display image source */}
+                <div className="card-image">
+                  <img
+                    src={employee.url ? employee.url : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSGzFXWLmEJOIJINzoqCxDsQ5UvK2CSq7KRsT0K3fX6qlSxfFPy2Yf1OI48nFWtECrJbM&usqp=CAU"}
+                    alt="No Passport Photo"
+                    className="card-image__img"
+                  />
+                  <p className="card-image__src">{employee.url}</p>
                 </div>
                 <div className="card-body">
                   <h5 className="card-title text-center">{employee.fullName}</h5>

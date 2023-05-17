@@ -2,73 +2,71 @@
 
 /* Whole website background to light grey */
 .bg-light-grey {
-  background-color: lightgrey;
+  background-color: #F4F1EA;
 }
 
-/* Circular image style */
-.circle-image {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
+body {
+  background-color: #F4F1EA;
 }
 
-/* Center circular image */
-.circle-image-container {
-  height: 100px; /* Set the desired height */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.card-image {
+  position: relative;
 }
 
-/* Adjust card width based on the number of columns */
-@media (min-width: 576px) {
-  .col-sm-6 {
-    flex-basis: 50%;
-    max-width: 50%;
-  }
+.card-image__img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px 5px 0 0;
 }
 
-@media (min-width: 768px) {
-  .col-md-4 {
-    flex-basis: 33.33333%;
-    max-width: 33.33333%;
-  }
-}
-
-@media (min-width: 992px) {
-  .col-lg-2 {
-    flex-basis: 16.66667%;
-    max-width: 16.66667%;
-  }
+.card-image__src {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  padding: 5px;
+  background-color: white;
+  font-size: 12px;
+  font-family: sans-serif;
+  border-radius: 3px;
 }
 
 /*USER VIEW*/
 
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: sandstone;
-}
 
-.form-container {
-  width: 400px;
+/* App.jsx */
+.app-container {
+  text-align: center;
   padding: 20px;
-  background-color: cream;
 }
 
-.form-container h1 {
+.title-section {
+  background-color: #F4F1EA; /* Quicksand color */
+  padding: 10px;
   margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.form-container label {
-  display: block;
-  margin-bottom: 10px;
+.title {
+  font-size: 24px;
+  margin: 0;
+  font-family: sans-serif;
+  font-weight: bold;
 }
 
-.form-container input {
-  width: 100%;
-  padding: 5px;
-  margin-bottom: 10px;
+.line {
+  border: none;
+  border-top: 1px solid black;
+  margin: 0;
+}
+
+.footer-section {
+  background-color: #F4F1EA; /* Quicksand color */
+  padding: 20px;
+  text-align: center;
+}
+
+.button-container {
+  display: flex;
 }

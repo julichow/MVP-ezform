@@ -130,130 +130,128 @@ function UserView({ addFormArray }) {
   };
 
   return (
-    <div className="container">
-      <div className="form-container">
-        <h1>Employment Form</h1>
-        <form onSubmit={handleSubmit}>
-          <h3>Employee Information</h3>
-          <div>
-            <label>Full Name:</label>
-            <input
-              type="text"
-              name="fullName"
-              value={formData.fullName}
-              onChange={handleInputChange}
-            ></input>
-            <label>Employee ID:</label>
-            <input
-              type="text"
-              name="employeeId"
-              value={formData.employeeId}
-              onChange={handleInputChange}
-            ></input>
-          </div>
-          <div>
-            <label>Country:</label>
-            <input
-              type="text"
-              name="country"
-              value={formData.country}
-              onChange={handleInputChange}
-            ></input>
-            <label>Passport Number:</label>
-            <input
-              type="text"
-              name="passportNumber"
-              value={formData.passportNumber}
-              onChange={handleInputChange}
-            ></input>
-          </div>
-          <div>
-            <label>Address:</label>
-            <input
-              type="text"
-              name="address"
-              value={formData.address}
-              onChange={handleInputChange}
-            ></input>
-          </div>
-          <div>
-            <label>Phone Number:</label>
-            <input
-              type="text"
-              name="phoneNumber"
-              value={formData.phoneNumber}
-              onChange={handleInputChange}
-            ></input>
-            <label>Birth Date:</label>
-            <input
-              type="date"
-              placeholder="mm/dd/yyyy"
-              name="birthDate"
-              value={formData.birthDate}
-              onChange={handleInputChange}
-            ></input>
-          </div>
-          <label>Email Address:</label>
-          <input
-            type="email"
-            name="emailAddress"
-            value={formData.emailAddress}
-            onChange={handleInputChange}
-          ></input>
-          <label>Marital Status:</label>
+    <div>
+      <h1>Employment Form</h1>
+      <form onSubmit={handleSubmit}>
+        <h3>Employee Information</h3>
+        <div>
+          <label>Full Name:</label>
           <input
             type="text"
-            name="maritalStatus"
-            value={formData.maritalStatus}
+            name="fullName"
+            value={formData.fullName}
             onChange={handleInputChange}
           ></input>
+          <label>Employee ID:</label>
+          <input
+            type="text"
+            name="employeeId"
+            value={formData.employeeId}
+            onChange={handleInputChange}
+          ></input>
+        </div>
+        <div>
+          <label>Country:</label>
+          <input
+            type="text"
+            name="country"
+            value={formData.country}
+            onChange={handleInputChange}
+          ></input>
+          <label>Passport Number:</label>
+          <input
+            type="text"
+            name="passportNumber"
+            value={formData.passportNumber}
+            onChange={handleInputChange}
+          ></input>
+        </div>
+        <div>
+          <label>Address:</label>
+          <input
+            type="text"
+            name="address"
+            value={formData.address}
+            onChange={handleInputChange}
+          ></input>
+        </div>
+        <div>
+          <label>Phone Number:</label>
+          <input
+            type="text"
+            name="phoneNumber"
+            value={formData.phoneNumber}
+            onChange={handleInputChange}
+          ></input>
+          <label>Birth Date:</label>
+          <input
+            type="date"
+            placeholder="mm/dd/yyyy"
+            name="birthDate"
+            value={formData.birthDate}
+            onChange={handleInputChange}
+          ></input>
+        </div>
+        <label>Email Address:</label>
+        <input
+          type="email"
+          name="emailAddress"
+          value={formData.emailAddress}
+          onChange={handleInputChange}
+        ></input>
+        <label>Marital Status:</label>
+        <input
+          type="text"
+          name="maritalStatus"
+          value={formData.maritalStatus}
+          onChange={handleInputChange}
+        ></input>
   
-          <h3>Work Information</h3>
-          <div>
-            <label>Start Date:</label>
-            <input
-              type="date"
-              placeholder="mm/dd/yyyy"
-              name="startDate"
-              value={formData.startDate}
-              onChange={handleInputChange}
-            ></input>
-            <label>Epf Number:</label>
-            <input
-              type="text"
-              name="epfNumber"
-              value={formData.epfNumber}
-              onChange={handleInputChange}
-            ></input>
-          </div>
-          <div>
-            <label>Department:</label>
-            <input
-              type="text"
-              name="department"
-              value={formData.department}
-              onChange={handleInputChange}
-            ></input>
-            <label>SOCSO:</label>
-            <input
-              type="text"
-              name="socso"
-              value={formData.socso}
-              onChange={handleInputChange}
-            ></input>
-          </div>
-          <label>Please share URL copy of your passport photo:</label>
+        <h3>Work Information</h3>
+        <div>
+          <label>Start Date:</label>
           <input
-            type="text"
-            name="url"
-            value={formData.url}
+            type="date"
+            placeholder="mm/dd/yyyy"
+            name="startDate"
+            value={formData.startDate}
             onChange={handleInputChange}
           ></input>
-          <div>
-            <button type="submit">Save</button>
-          </div>
-        </form>
-      </div>
+          <label>Epf Number:</label>
+          <input
+            type="text"
+            name="epfNumber"
+            value={formData.epfNumber}
+            onChange={handleInputChange}
+          ></input>
+        </div>
+        <div>
+          <label>Department:</label>
+          <input
+            type="text"
+            name="department"
+            value={formData.department}
+            onChange={handleInputChange}
+          ></input>
+          <label>SOCSO:</label>
+          <input
+            type="text"
+            name="socso"
+            value={formData.socso}
+            onChange={handleInputChange}
+          ></input>
+        </div>
+        <label>Please share URL copy of your passport photo:</label>
+        <input
+          type="text"
+          name="url"
+          value={formData.url}
+          onChange={handleInputChange}
+        ></input>
+        <div>
+          <button type="submit">Save</button>
+        </div>
+      </form>
     </div>
   );
 };

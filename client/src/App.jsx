@@ -21,12 +21,18 @@ function App() {
   };  
 
   return (
-    <div>
+    <div className="app-container">
+      <header className="title-section">
+        <h1 className="title">EZFORM & CO.</h1>
+        <div className="button-container">
       {/* selecting admin view tab */}
-      <button onClick={() => handleChangeView(true)}>ADMIN</button> 
+      <button className="admin-button" onClick={() => handleChangeView(true)}>ADMIN</button> 
       {/* selecting user view tab */}
-      <button onClick={() => handleChangeView(false)}>USER</button>
-      {isAdmin
+      <button className="user-button" onClick={() => handleChangeView(false)}>USER</button>
+      </div>
+      </header>
+      <hr className="line" />
+        {isAdmin
         // 2. using AdminView import component
         //render Admin View and pass the formArray 
         ? (<AdminView formArray={forms}/>)
@@ -35,6 +41,9 @@ function App() {
         //render UserView and pass the handleAddForm callback
         : (<UserView addFormArray={(newForms) => handleAddForm(newForms)} />)
       }
+      <footer className="footer-section">
+        <p>@2023 Ju Li Chow LLC</p>
+      </footer>
     </div>
   )
 }
