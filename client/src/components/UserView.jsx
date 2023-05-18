@@ -7,7 +7,7 @@ function UserView({ addFormArray }) {
     fullName: "",
     employeeId: "",
     country: "",
-    passportNumber: "",
+    passport: "",
     address: "",
     phoneNumber: "",
     birthDate: "",
@@ -16,7 +16,7 @@ function UserView({ addFormArray }) {
     startDate: "",
     epfNumber: "",
     department: "",
-    socso: "",
+    SOCSO: "",
     url: "",
   });
   //represents list of employees fetched from the server 
@@ -62,7 +62,7 @@ function UserView({ addFormArray }) {
   const handleSubmit = (event) => {
     event.preventDefault();
   
-    const { employeeId, fullName, address, country, passportNumber, emailAddress, birthDate, phoneNumber, maritalStatus, department, epfNumber, socso, startDate } = formData;
+    const { employeeId, fullName, address, country, passport, emailAddress, birthDate, phoneNumber, maritalStatus, department, epfNumber, SOCSO, startDate } = formData;
   
     const options = {
       method: "POST",
@@ -74,14 +74,14 @@ function UserView({ addFormArray }) {
         fullName,
         address,
         country,
-        passportNumber,
+        passport,
         emailAddress,
         birthDate,
         phoneNumber,
         maritalStatus,
         department,
         epfNumber,
-        socso,
+        SOCSO,
         startDate,
         url: formData.url,
       }),
@@ -95,14 +95,14 @@ function UserView({ addFormArray }) {
             fullName,
             address,
             country,
-            passportNumber,
+            passport,
             emailAddress,
             birthDate,
             phoneNumber,
             maritalStatus,
             department,
             epfNumber,
-            socso,
+            SOCSO,
             startDate,
             url: formData.url,
           }]);
@@ -111,14 +111,14 @@ function UserView({ addFormArray }) {
             fullName,
             address,
             country,
-            passportNumber,
+            passport,
             emailAddress,
             birthDate,
             phoneNumber,
             maritalStatus,
             department,
             epfNumber,
-            socso,
+            SOCSO,
             startDate,
             url: formData.url,
           }])
@@ -165,8 +165,8 @@ function UserView({ addFormArray }) {
             <input
               className="input"
               type="text"
-              name="passportNumber"
-              value={formData.passportNumber}
+              name="passport"
+              value={formData.passport}
               onChange={handleInputChange}
             />
           </div>
@@ -253,8 +253,8 @@ function UserView({ addFormArray }) {
             <input
               className="input"
               type="text"
-              name="socso"
-              value={formData.socso}
+              name="SOCSO"
+              value={formData.SOCSO}
               onChange={handleInputChange}
             />
           </div>
@@ -271,7 +271,7 @@ function UserView({ addFormArray }) {
         </div>
 
         <div className="button">
-          <button type="submit">Save</button>
+          <button type="submit" className="peach-button">Save</button>
         </div>
       </form>
     </div>

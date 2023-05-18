@@ -54,9 +54,35 @@ body {
 }
 
 .button {
-  margin-top: 10px;
+  display: inline-block;
 }
 
+.peach-button {
+  border-radius: 12px;
+  background-color: #FFCBA4; /* Peach color */
+  color: #000000; /* Black color for text */
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s;
+}
+
+.peach-button::before {
+  content: "\2192"; /* Unicode arrow right symbol */
+  position: absolute;
+  right: 10px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.peach-button:hover {
+  background-color: #FFA87D; /* Lighter shade of peach on hover */
+}
+
+.peach-button:hover::before {
+  opacity: 1;
+}
 /* App.jsx */
 .app-container {
   text-align: center;
