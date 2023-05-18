@@ -25,27 +25,35 @@ function App() {
       <header className="title-section">
         <h1 className="title">EZFORM & CO.</h1>
         <div className="button-container">
-      {/* selecting admin view tab */}
-      <button className="admin-button" onClick={() => handleChangeView(true)}>ADMIN</button> 
-      {/* selecting user view tab */}
-      <button className="user-button" onClick={() => handleChangeView(false)}>USER</button>
-      </div>
+          {/* Selecting admin view tab */}
+          <button
+            className={`admin-button${isAdmin ? ' active' : ''}`}
+            onClick={() => handleChangeView(true)}
+          >
+            ADMIN
+          </button>
+          {/* Selecting user view tab */}
+          <button
+            className={`user-button${!isAdmin ? ' active' : ''}`}
+            onClick={() => handleChangeView(false)}
+          >
+            USER
+          </button>
+        </div>
       </header>
       <hr className="line" />
-        {isAdmin
-        // 2. using AdminView import component
-        //render Admin View and pass the formArray 
-        ? (<AdminView formArray={forms}/>)
-        // 2. using UserView import component
-        //passing props in react left is prop we'll be passing to UserView and right is the value of the prop
-        //render UserView and pass the handleAddForm callback
-        : (<UserView addFormArray={(newForms) => handleAddForm(newForms)} />)
-      }
+      {isAdmin ? (
+        // Render AdminView and pass the formArray
+        <AdminView formArray={forms} />
+      ) : (
+        // Render UserView and pass the handleAddForm callback
+        <UserView addFormArray={(newForms) => handleAddForm(newForms)} />
+      )}
       <footer className="footer-section">
         <p>@2023 Ju Li Chow LLC</p>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default App; 
+export default App;

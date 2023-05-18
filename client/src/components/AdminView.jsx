@@ -28,7 +28,6 @@ function AdminView() {
   };
 
   return (
-    <div className="bg-light-grey">
       <div className="container-fluid">
         <h3 className="text-dark mt-4 mb-4" style={{ fontFamily: 'sans-serif' }}>List of Ezform employees</h3>
         <div className="row">
@@ -65,7 +64,6 @@ function AdminView() {
           ))}
         </div>
       </div>
-    </div>
   );
 }
 
