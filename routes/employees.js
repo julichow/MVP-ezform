@@ -24,7 +24,7 @@ router.get("/", async (req, res, next) =>{
   }
 });
 
-/*
+/*  
 GET one employee using params
 1. create personal_info & work_info table respectively
 2. join both tables
