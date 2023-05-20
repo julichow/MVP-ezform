@@ -65,17 +65,17 @@ router.get("/employees", async (req, res, next) => {
       let results = await db('SELECT p.employeeId, p.fullName, p.address, p.country, p.passport, p.emailAddress, p.birthDate, p.phoneNumber, p.maritalStatus, w.department, w.epfNumber, w.SOCSO, w.startDate, w.url FROM personal_info p JOIN work_info w ON p.employeeID = w.employeeId;');
       res.send(results.data);
     }
-    // console.log("RESULTS: ", results)
+  // console.log("RESULTS: ", results)
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
 });
 
 /*
-INSERT a new employee into personal_info
+INSERT a new employee into personal_info and work_info
 1. create personal_info & work_info table respectively
 2. join both tables
-3. view data via postman POST: localhost:4000/api/employees
+3. insert new employee data via postman POST: localhost:4000/api/employees
 */
 router.post("/employees", async (req, res, next) => {
   const { employeeId, fullName, address, country, passport, emailAddress, birthDate, phoneNumber, maritalStatus, department, epfNumber, SOCSO, startDate, url } = req.body;
@@ -93,9 +93,9 @@ router.post("/employees", async (req, res, next) => {
   }
 });
 
-// // PUT an employee
-// //1. write syntax for DELETE FROM personal via mySQL and copy paste here
-// //2. view data via postman DELETE: localhost:4000/api/employees/:id
+// // EDIT/UPDATE an employee **have not tested on postman. A work in progress code
+// //1. write syntax for EDIT FROM personal via mySQL and copy paste here
+// //2. view data via postman PUT: localhost:4000/api/employees/:id
 // router.put("employees/:id", async function(req, res, next) {
 //   //let id = req.params.id
 //   const { employeeId, fullName, address, country, passport, emailAddress, birthDate, phoneNumber, maritalStatus, department, epfNumber, SOCSO, startDate, url } = req.body;
