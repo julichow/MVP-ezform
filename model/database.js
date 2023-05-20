@@ -19,8 +19,8 @@ con.connect(function(err) {
   console.log("Connected!");
 
   let sql =
-    "DROP TABLE if exists personal_info; CREATE TABLE personal_info (employeeId INT NOT NULL AUTO_INCREMENT, fullName VARCHAR(30) not null, address VARCHAR(200),country VARCHAR(15) not null, passport VARCHAR(20), emailAddress VARCHAR(25), birthDate date, phoneNumber bigint, maritalStats VARCHAR(10), PRIMARY KEY (employeeId));"; +
-    "DROP TABLE if exists work_info; CREATE TABLE work_info (employeeId INT NOT NULL AUTO_INCREMENT, department VARCHAR(30), epfNumber int, SOCSO tinyint(1), startDate date, PRIMARY KEY (employeeId));";  
+    "DROP TABLE if exists personal_info; CREATE TABLE personal_info (employeeId INT NOT NULL, fullName VARCHAR(30) NOT NULL, address VARCHAR(200),country VARCHAR(15) NOT NULL, passport VARCHAR(20), emailAddress VARCHAR(25), birthDate date, phoneNumber bigint, maritalStatus VARCHAR(10), PRIMARY KEY (employeeId));"; +
+    "DROP TABLE if exists work_info; CREATE TABLE work_info (employeeId INT NOT NULL, department VARCHAR(30) NOT NULL, epfNumber VARCHAR(30), SOCSO VARCHAR(30), startDate date, url TEXT, PRIMARY KEY (employeeId));";  
   con.query(sql, function(err, result) {
     if (err) throw err;
     console.log("Table creation `employees` was successful!");
