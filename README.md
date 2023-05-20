@@ -50,7 +50,7 @@ Create a webpage with the following functionality:
 - [ ] A list of employees.
 - [ ] A form to add new employees. There should be fields to input the Personal Information and Work Information, separately.
   - After submitting the form in User View, the new employees should be added to the employees database and displayed on the Admin page.
-- [ ] Each student can be added with a save button. After clicking on this button, student should be added from the database and the updated list of employees shown on the page
+- [ ] Each employees can be added with a save button. After clicking on this button, employees should be added from the database and the updated list of employees shown on the page
 - [ ] Style the app to make it look as polished as possible. Bootstrap is already loaded in the index.html file, so you can use it if you want to.
 
 ## Tips
