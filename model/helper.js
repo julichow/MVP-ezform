@@ -18,7 +18,7 @@ module.exports = async function db(query) {
       user: DB_USER || "root",
       password: DB_PASS,
       database: DB_NAME || "database",
-      port: DB_PORT,
+      port: process.env.DB_PORT || "3306",
       multipleStatements: true
     });
 
@@ -54,6 +54,9 @@ module.exports = async function db(query) {
           // push the first item in result list to data (this accounts for situations
           // such as when the query ends with SELECT LAST_INSERT_ID() and returns an insertId)
           results.data.push(result[0]);
+        } else {
+          //for mysql2 results data structure
+          result.forEach(row => results.data.push(row));
         }
 
         con.end();
