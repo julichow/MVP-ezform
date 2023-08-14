@@ -24,7 +24,7 @@ Create `.env` file in project directory and add
 DB_HOST=localhost
 DB_USER=root
 DB_PASS=YOUR_PASSWORD
-DB_NAME=employeesc
+DB_NAME=employees
 ```
 
 (replace `YOUR_PASSWORD` with your actual password)

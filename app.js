@@ -14,9 +14,13 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'public'))); //comment out as we'll have our own public folder
+app.use(express.static(path.join(__dirname, 'client/dist'))); //serve static files from the React frontend app
 
 app.use('/', indexRouter);
 app.use('/api', usersRouter);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(_dirname + "/client/dist/index.html"))
+});
 
 module.exports = app;

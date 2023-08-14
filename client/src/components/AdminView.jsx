@@ -9,7 +9,7 @@ function AdminView() {
     getEmployees();
   }, []);
 
-  //fetching list of employees from the servier
+  //fetching list of employees from the server
   const getEmployees = async () => {
     let options = {
       method: "GET",
