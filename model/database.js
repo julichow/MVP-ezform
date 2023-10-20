@@ -25,7 +25,7 @@ con.connect(function(err) {
   
   con.query(sql, function(err, result) {
     if (err) throw err;
-    console.log("Table creation `medications` was successful!");
+    console.log("Database creation for `employees` was successful!");
 
     console.log("Closing...");
   });

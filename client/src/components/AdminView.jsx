@@ -21,7 +21,7 @@ function AdminView() {
       //fetched employees data will be stored in employees useState using setEmployees 
       setEmployees(newEmployees);
       //for troubleshooting
-      console.log(newEmployees)
+      // console.log(newEmployees)
     } catch (error) {
       console.log(error);
     }
@@ -41,7 +41,7 @@ function AdminView() {
                 {/* Display image source */}
                 <div className="card-image">
                   <img
-                    src={employee.url ? employee.url : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSGzFXWLmEJOIJINzoqCxDsQ5UvK2CSq7KRsT0K3fX6qlSxfFPy2Yf1OI48nFWtECrJbM&usqp=CAU"}
+                    src={employee.upload ? employee.upload : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSGzFXWLmEJOIJINzoqCxDsQ5UvK2CSq7KRsT0K3fX6qlSxfFPy2Yf1OI48nFWtECrJbM&usqp=CAU"}
                     alt="No Passport Photo"
                     className="card-image__img"
                   />
@@ -50,17 +50,19 @@ function AdminView() {
                   <h5 className="card-title text-center">{employee.fullName}</h5>
                   <div className="text-left">
                     <p className="card-text">Employee ID: {employee.employeeId}</p>
-                    <p className="card-text">Email Address: {employee.emailAddress}</p>
-                    <p className="card-text">Birth Date: {formattedBirthDate}</p>
-                    <p className="card-text">Phone Number: {employee.phoneNumber}</p>
+                    <p className="card-text">Gender: {employee.sex}</p>
+                    <p className="card-text">Marital Status: {employee.maritalStatus}</p>
                     <p className="card-text">Address: {employee.address}</p>
                     <p className="card-text">Country: {employee.country}</p>
+                    <p className="card-text">Phone Number: {employee.phoneNumber}</p>
+                    <p className="card-text">Email Address: {employee.emailAddress}</p>                  
                     <p className="card-text">Passport Number: {employee.passport}</p>
-                    <p className="card-text">Marital Status: {employee.maritalStatus}</p>
+                    <p className="card-text">Birth Date: {formattedBirthDate}</p>
                     <p className="card-text">Department: {employee.department}</p>
                     <p className="card-text">Epf Number: {employee.epfNumber}</p>
                     <p className="card-text">SOCSO number: {employee.SOCSO}</p>
                     <p className="card-text">Employee Start Date: {formattedStartDate}</p>
+                    
                   </div>
                 </div>
               </div>
