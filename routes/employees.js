@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const db = require("../model/helper")
 
-//localhost:4000/api
+//localhost:4000/api test
 //test if API is working 
 router.get('/', (req, res, next) => {
   res.send('Welcome to the API');

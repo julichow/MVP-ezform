@@ -1,4 +1,3 @@
-
 DROP TABLE IF EXISTS personal_info;
 DROP TABLE IF EXISTS work_info; 
 
