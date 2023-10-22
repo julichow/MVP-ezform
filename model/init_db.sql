@@ -32,6 +32,6 @@ VALUES
 
 INSERT INTO work_info (employeeId, department, epfNumber, SOCSO, startDate, url)
 VALUES
-(1, 'Sales', 'EPF-12345', 'SOCSO-54321', '2022-01-10', 'https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHBlcnNvbnxlbnwwfHwwfHx8MA%3D%3D'),
+(1, 'Sales', 'EPF-12345', 'SOCSO-54321', '2022-01-10', 'https://images.unsplash.com/photo-1500048993953-d23a436266cf?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHBlcnNvbnxlbnwwfHwwfHx8MA%3D%3D'),
 (2, 'Marketing', 'EPF-56789', 'SOCSO-98765', '2021-11-05', 'https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHBlcnNvbnxlbnwwfHwwfHx8MA%3D%3D'),
 (3, 'Engineering', 'EPF-24680', 'SOCSO-13579', '2023-03-15', 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww');
