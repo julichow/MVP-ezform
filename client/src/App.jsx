@@ -23,7 +23,7 @@ function App() {
   return (
     <div className="app-container">
       <header className="title-section">
-        <h1 className="title">EZFORM & CO.</h1>
+        <h1 className="title">Ezform & Co.</h1>
         <div className="button-container">
           {/* Selecting admin view tab */}
           <button
