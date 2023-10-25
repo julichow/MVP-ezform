@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-//declare UserView function that accepts a prop call "addFormArray"
 function UserView({ addFormArray }) {
-//intialize the formData state variable with an empty string for each field 
   const [formData, setFormData] = useState({
     fullName: "",
     employeeId: "",
@@ -19,16 +17,13 @@ function UserView({ addFormArray }) {
     SOCSO: "",
     url: "",
   });
-  //represents list of employees fetched from the server 
-  const [employees, setEmployees] = useState([]);
+
+  const [formInfo, setFormInfo] = useState([]);
 
   useEffect(() => {
-    // get the list of employees every time the webpage is loaded
     getEmployees();
-    //empty array to ensure the effect runs only once everytime it loads
   }, []);
 
-//GET request to fetch list of employees from the server 
   const getEmployees = async () => {
     let options = {
       method: "GET",
@@ -36,12 +31,13 @@ function UserView({ addFormArray }) {
         "Content-Type": "application/json",
       },
     };
+
     try {
       const response = await fetch("/api/employees", options);
-      //if response is 200, extracts the employee data from the response and updates the employees state using setEmployees
+
       if (response.status === 200) {
-        const employeesData = await response.json();
-        setEmployees(employeesData);
+        const employeesInfo = await response.json();
+        setFormInfo(employeesInfo);
       } else {
         console.log("Failed to fetch employees.");
       }
@@ -51,82 +47,37 @@ function UserView({ addFormArray }) {
   };
 
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
-  
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    const { value, name } = event.target;
+    setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  
-    const { employeeId, fullName, address, country, passport, emailAddress, birthDate, phoneNumber, maritalStatus, department, epfNumber, SOCSO, startDate } = formData;
-  
+    addEmployee();
+  };
+
+  const addEmployee = async () => {
     const options = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        employeeId,
-        fullName,
-        address,
-        country,
-        passport,
-        emailAddress,
-        birthDate,
-        phoneNumber,
-        maritalStatus,
-        department,
-        epfNumber,
-        SOCSO,
-        startDate,
-        url: formData.url,
-      }),
+      body: JSON.stringify(formData),
     };
-  
-    fetch("/api/employees", options)
-      .then((response) => {
-        if (response.status === 200) {
-          setEmployees([...employees, {
-            employeeId,
-            fullName,
-            address,
-            country,
-            passport,
-            emailAddress,
-            birthDate,
-            phoneNumber,
-            maritalStatus,
-            department,
-            epfNumber,
-            SOCSO,
-            startDate,
-            url: formData.url,
-          }]);
-          addFormArray([...employees, {
-            employeeId,
-            fullName,
-            address,
-            country,
-            passport,
-            emailAddress,
-            birthDate,
-            phoneNumber,
-            maritalStatus,
-            department,
-            epfNumber,
-            SOCSO,
-            startDate,
-            url: formData.url,
-          }])
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+
+    try {
+      const response = await fetch("/api/employees", options);
+
+      if (response.status === 200) {
+        const newEmployee = await response.json();
+        alert("Form submitted successfully");
+        addFormArray([...formInfo, newEmployee]);
+      } else {
+        console.log("Failed to submit the form.");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -135,7 +86,7 @@ function UserView({ addFormArray }) {
         <div className="container">
           <h3 className="form-heading">Employee Information</h3>
           <div className="form-group">
-            <label className="label">Full Name:</label>
+            <label htmlFor="fullName" className="label">Full Name:</label>
             <input
               className="input"
               type="text"
@@ -143,7 +94,9 @@ function UserView({ addFormArray }) {
               value={formData.fullName}
               onChange={handleInputChange}
             />
-            <label className="label">Employee ID:</label>
+          </div>
+          <div className="form-group">
+            <label htmlFor="employeeId" className="label">Employee ID:</label>
             <input
               className="input"
               type="text"
@@ -153,7 +106,7 @@ function UserView({ addFormArray }) {
             />
           </div>
           <div className="form-group">
-            <label className="label">Country:</label>
+            <label htmlFor="country" className="label">Country:</label>
             <input
               className="input"
               type="text"
@@ -161,7 +114,9 @@ function UserView({ addFormArray }) {
               value={formData.country}
               onChange={handleInputChange}
             />
-            <label className="label">Passport Number:</label>
+          </div>
+          <div className="form-group">
+            <label htmlFor="passport" className="label">Passport Number:</label>
             <input
               className="input"
               type="text"
@@ -171,7 +126,7 @@ function UserView({ addFormArray }) {
             />
           </div>
           <div className="form-group">
-            <label className="label">Address:</label>
+            <label htmlFor="address" className="label">Address:</label>
             <input
               className="input"
               type="text"
@@ -181,7 +136,7 @@ function UserView({ addFormArray }) {
             />
           </div>
           <div className="form-group">
-            <label className="label">Phone Number:</label>
+            <label htmlFor="phoneNumber" className="label">Phone Number:</label>
             <input
               className="input"
               type="text"
@@ -189,7 +144,9 @@ function UserView({ addFormArray }) {
               value={formData.phoneNumber}
               onChange={handleInputChange}
             />
-            <label className="label">Birth Date:</label>
+          </div>
+          <div className="form-group">
+            <label htmlFor="birthDate" className="label">Birth Date:</label>
             <input
               className="input"
               type="date"
@@ -200,7 +157,7 @@ function UserView({ addFormArray }) {
             />
           </div>
           <div className="form-group">
-            <label className="label">Email Address:</label>
+            <label htmlFor="emailAddress" className="label">Email Address:</label>
             <input
               className="input"
               type="email"
@@ -208,7 +165,9 @@ function UserView({ addFormArray }) {
               value={formData.emailAddress}
               onChange={handleInputChange}
             />
-            <label className="label">Marital Status:</label>
+          </div>
+          <div className="form-group">
+            <label htmlFor="maritalStatus" className="label">Marital Status:</label>
             <input
               className="input"
               type="text"
@@ -222,7 +181,7 @@ function UserView({ addFormArray }) {
         <div className="container">
           <h3 className="form-heading">Work Information</h3>
           <div className="form-group">
-            <label className="label">Start Date:</label>
+            <label htmlFor="startDate" className="label">Start Date:</label>
             <input
               className="input"
               type="date"
@@ -231,7 +190,9 @@ function UserView({ addFormArray }) {
               value={formData.startDate}
               onChange={handleInputChange}
             />
-            <label className="label">Epf Number:</label>
+          </div>
+          <div className="form-group">
+            <label htmlFor="epfNumber" className="label">Epf Number:</label>
             <input
               className="input"
               type="text"
@@ -241,7 +202,7 @@ function UserView({ addFormArray }) {
             />
           </div>
           <div className="form-group">
-            <label className="label">Department:</label>
+            <label htmlFor="department" className="label">Department:</label>
             <input
               className="input"
               type="text"
@@ -249,7 +210,9 @@ function UserView({ addFormArray }) {
               value={formData.department}
               onChange={handleInputChange}
             />
-            <label className="label">SOCSO:</label>
+          </div>
+          <div className="form-group">
+            <label htmlFor="SOCSO" className="label">SOCSO:</label>
             <input
               className="input"
               type="text"
@@ -259,7 +222,9 @@ function UserView({ addFormArray }) {
             />
           </div>
           <div className="form-group">
-            <label className="label">Please share URL copy of your passport photo:</label>
+            <label htmlFor="url" className="label">
+              Please share URL copy of your passport photo:
+            </label>
             <input
               className="input"
               type="text"
@@ -271,11 +236,13 @@ function UserView({ addFormArray }) {
         </div>
 
         <div className="button">
-          <button type="submit" className="peach-button">Save</button>
+          <button type="submit" className="peach-button">
+            Save
+          </button>
         </div>
       </form>
     </div>
   );
-};
+}
 
 export default UserView;

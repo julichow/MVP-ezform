@@ -1,17 +1,17 @@
 import { useState } from 'react'
 import './App.css'
-//1. import User View component
 import UserView from "./components/UserView";
-//1. import Admin View component 
 import AdminView from "./components/AdminView";
 
 //always have function & to export as well 
 function App() {
   const [isAdmin, setIsAdmin] = useState(true);
   const [forms, setForms] = useState([]);
+  console.log(forms)
 
   //handleAddForm is called when a form is submitted in the UserView component
   const handleAddForm = (newForms) => {
+console.log("handleAddForm called from App.js", newForms)
 //updates the new form to the existing array of forms 
     setForms((state) => [...state, newForms]);
   };
@@ -47,10 +47,10 @@ function App() {
         <AdminView formArray={forms} />
       ) : (
         // Render UserView and pass the handleAddForm callback
-        <UserView addFormArray={(newForms) => handleAddForm(newForms)} />
+        <UserView addFormArray={(newForms) => handleAddForm(newForms)}  />
       )}
       <footer className="footer-section">
-        <p>@2023 Ju Li Chow LLC</p>
+        <p>@2023 Ezform LLC</p>
       </footer>
     </div>
   );
