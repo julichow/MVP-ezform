@@ -23,11 +23,11 @@ router.get("/employees", async (req, res, next) =>{
 
 //POST: localhost:4000/api/employees
 router.post("/employees", async (req, res, next) => {
-  const { fullName, sex, maritalStatus, address, country, phoneNumber, emailAddress, passport, birthDate, employeeId, department, epfNumber, SOCSO, startDate, url } = req.body;
+  const { fullName, gender, maritalStatus, address, country, phoneNumber, emailAddress, passport, birthDate, employeeId, department, epfNumber, SOCSO, startDate, url } = req.body;
   // console.log(req.body)
   try {
     //insert new employee. id will be auto incremented
-    await db(`INSERT INTO personal_info (fullName, sex, maritalStatus, address, country, phoneNumber, emailAddress, passport, birthDate) VALUES ('${fullName}', '${sex}', '${maritalStatus}', '${address}', '${country}', '${phoneNumber}', '${emailAddress}', '${passport}', '${birthDate}');`);
+    await db(`INSERT INTO personal_info (fullName, gender, maritalStatus, address, country, phoneNumber, emailAddress, passport, birthDate) VALUES ('${fullName}', '${gender}', '${maritalStatus}', '${address}', '${country}', '${phoneNumber}', '${emailAddress}', '${passport}', '${birthDate}');`);
     await db(`INSERT INTO employment_info(employeeId, department, epfNumber, socso, startDate, url) VALUES ('${employeeId}', '${department}', '${epfNumber}', '${SOCSO}', '${startDate}', '${url}');`);
     //get the updated list of employees
     let results = await db(employees);
@@ -40,10 +40,10 @@ router.post("/employees", async (req, res, next) => {
 //PUT: localhost:4000/api/employees/:id
 router.put("/employees/:id", async function (req, res, next) {
   const { id } = req.params;
-  const { fullName, sex, maritalStatus, address, country, phoneNumber, emailAddress, passport, birthDate, employeeId, department, epfNumber, SOCSO, startDate, url } = req.body;
+  const { fullName, gender, maritalStatus, address, country, phoneNumber, emailAddress, passport, birthDate, employeeId, department, epfNumber, SOCSO, startDate, url } = req.body;
   try {
     //edit employees with specified id from database
-    await db(`UPDATE personal_info SET fullName = '${fullName}', sex = '${sex}', maritalStatus = '${maritalStatus}', address = '${address}', country = '${country}', phoneNumber = '${phoneNumber}', emailAddress = '${emailAddress}', passport = '${passport}', birthDate = '${birthDate}' WHERE id = ${id};`); 
+    await db(`UPDATE personal_info SET fullName = '${fullName}', gender = '${gender}', maritalStatus = '${maritalStatus}', address = '${address}', country = '${country}', phoneNumber = '${phoneNumber}', emailAddress = '${emailAddress}', passport = '${passport}', birthDate = '${birthDate}' WHERE id = ${id};`); 
     await db(`UPDATE employment_info SET employeeId = '${employeeId}', department = '${department}', epfNumber = '${epfNumber}', SOCSO = '${SOCSO}', startDate = '${startDate}', url = '${url}' WHERE id = ${id};`); 
     //get the updated list of employees
     let results = await db(employees);

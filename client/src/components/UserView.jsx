@@ -1,50 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-function UserView({ addFormArray }) {
+function UserView({ addEmployeeData }) {
   const [formData, setFormData] = useState({
     fullName: "",
-    employeeId: "",
-    country: "",
-    passport: "",
-    address: "",
-    phoneNumber: "",
-    birthDate: "",
-    emailAddress: "",
+    gender: "",
     maritalStatus: "",
-    startDate: "",
-    epfNumber: "",
+    address: "",
+    country: "",
+    phoneNumber: "",
+    emailAddress: "",
+    passport: "",
+    birthDate: "",
+    employeeId: "",
     department: "",
+    epfNumber: "",
     SOCSO: "",
+    startDate: "",
     url: "",
   });
-
-  const [formInfo, setFormInfo] = useState([]);
-
-  useEffect(() => {
-    getEmployees();
-  }, []);
-
-  const getEmployees = async () => {
-    let options = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
-    try {
-      const response = await fetch("/api/employees", options);
-
-      if (response.status === 200) {
-        const employeesInfo = await response.json();
-        setFormInfo(employeesInfo);
-      } else {
-        console.log("Failed to fetch employees.");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const handleInputChange = (event) => {
     const { value, name } = event.target;
@@ -71,7 +44,8 @@ function UserView({ addFormArray }) {
       if (response.status === 200) {
         const newEmployee = await response.json();
         alert("Form submitted successfully");
-        addFormArray([...formInfo, newEmployee]);
+        //pass the data back to the App (parent) using addEmployeeData prop
+        addEmployeeData(newEmployee);
       } else {
         console.log("Failed to submit the form.");
       }
@@ -86,70 +60,104 @@ function UserView({ addFormArray }) {
         <div className="container">
           <h3 className="form-heading">Employee Information</h3>
           <div className="form-group">
-            <label htmlFor="fullName" className="label">Full Name:</label>
+            <label for="fullName" className="label">
+              Full Name:
+            </label>
             <input
               className="input"
               type="text"
+              id="fullName"
               name="fullName"
               value={formData.fullName}
               onChange={handleInputChange}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="employeeId" className="label">Employee ID:</label>
+            <label for="employeeId" className="label">
+              Employee ID:
+            </label>
             <input
               className="input"
               type="text"
+              id="employeeId"
               name="employeeId"
               value={formData.employeeId}
               onChange={handleInputChange}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="country" className="label">Country:</label>
+            <label for="gender" className="label">
+              Gender:
+            </label>
             <input
               className="input"
               type="text"
+              id="gender"
+              name="gender"
+              value={formData.gender}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="form-group">
+            <label for="country" className="label">
+              Country:
+            </label>
+            <input
+              className="input"
+              type="text"
+              id="country"
               name="country"
               value={formData.country}
               onChange={handleInputChange}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="passport" className="label">Passport Number:</label>
+            <label for="passport" className="label">
+              Passport Number:
+            </label>
             <input
               className="input"
               type="text"
+              id="passport"
               name="passport"
               value={formData.passport}
               onChange={handleInputChange}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="address" className="label">Address:</label>
+            <label for="address" className="label">
+              Address:
+            </label>
             <input
               className="input"
               type="text"
+              id="address"
               name="address"
               value={formData.address}
               onChange={handleInputChange}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="phoneNumber" className="label">Phone Number:</label>
+            <label for="phoneNumber" className="label">
+              Phone Number:
+            </label>
             <input
               className="input"
               type="text"
+              id="phoneNumber"
               name="phoneNumber"
               value={formData.phoneNumber}
               onChange={handleInputChange}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="birthDate" className="label">Birth Date:</label>
+            <label for="birthDate" className="label">
+              Birth Date:
+            </label>
             <input
               className="input"
               type="date"
+              id="birthDate"
               placeholder="mm/dd/yyyy"
               name="birthDate"
               value={formData.birthDate}
@@ -157,20 +165,26 @@ function UserView({ addFormArray }) {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="emailAddress" className="label">Email Address:</label>
+            <label for="emailAddress" className="label">
+              Email Address:
+            </label>
             <input
               className="input"
               type="email"
+              id="emailAddress"
               name="emailAddress"
               value={formData.emailAddress}
               onChange={handleInputChange}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="maritalStatus" className="label">Marital Status:</label>
+            <label for="maritalStatus" className="label">
+              Marital Status:
+            </label>
             <input
               className="input"
               type="text"
+              id="maritalStatus"
               name="maritalStatus"
               value={formData.maritalStatus}
               onChange={handleInputChange}
@@ -181,10 +195,13 @@ function UserView({ addFormArray }) {
         <div className="container">
           <h3 className="form-heading">Work Information</h3>
           <div className="form-group">
-            <label htmlFor="startDate" className="label">Start Date:</label>
+            <label for="startDate" className="label">
+              Start Date:
+            </label>
             <input
               className="input"
               type="date"
+              id="startDate"
               placeholder="mm/dd/yyyy"
               name="startDate"
               value={formData.startDate}
@@ -192,42 +209,52 @@ function UserView({ addFormArray }) {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="epfNumber" className="label">Epf Number:</label>
+            <label for="epfNumber" className="label">
+              Epf Number:
+            </label>
             <input
               className="input"
               type="text"
+              id="epfNumber"
               name="epfNumber"
               value={formData.epfNumber}
               onChange={handleInputChange}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="department" className="label">Department:</label>
+            <label for="department" className="label">
+              Department:
+            </label>
             <input
               className="input"
               type="text"
+              id="department"
               name="department"
               value={formData.department}
               onChange={handleInputChange}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="SOCSO" className="label">SOCSO:</label>
+            <label for="SOCSO" className="label">
+              SOCSO:
+            </label>
             <input
               className="input"
               type="text"
+              id="SOCSO"
               name="SOCSO"
               value={formData.SOCSO}
               onChange={handleInputChange}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="url" className="label">
+            <label for="url" className="label">
               Please share URL copy of your passport photo:
             </label>
             <input
               className="input"
               type="text"
+              id="url"
               name="url"
               value={formData.url}
               onChange={handleInputChange}
