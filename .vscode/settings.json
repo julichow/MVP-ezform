@@ -7,7 +7,7 @@
       },
       "previewLimit": 50,
       "server": "localhost",
-      "port": 33060,
+      "port": 5173,
       "driver": "MySQL",
       "name": "mySQL ezform",
       "database": "employees",

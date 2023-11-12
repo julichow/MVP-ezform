@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+require("dotenv").config();
 const db = require("../model/helper")
 
 // Define the SQL query string
