@@ -1,17 +1,16 @@
-import { useState, useEffect } from 'react'
-import './App.css'
-import UserView from "./components/UserView";
-import AdminView from "./components/AdminView";
+import { useState, useEffect } from "react";
+import EmployeesList from "./components/EmployeesList";
+import Footer from "./components/Footer";
+import LandingPage from "./components/LandingPage";
+import Navbar from "./components/Navbar";
 
-//always have function & to export as well 
 function App() {
-  const [isAdmin, setIsAdmin] = useState(true);
   const [formInfo, setFormInfo] = useState([]);
 
   useEffect(() => {
-  //the code that we want to run 
+    //the code that we want to run
     getEmployees();
-  }, [isAdmin]); //dependency array
+  }, []); //dependency array
 
   const getEmployees = async () => {
     let options = {
@@ -54,51 +53,17 @@ function App() {
     }
   };
 
-  //handleAddForm is called when a form is submitted in the UserView component
-  const handleAddForm = (newForms) => {
-console.log("handleAddForm called from App.js", newForms)
-//updates the new form to the existing array of forms 
-    setFormInfo((state) => [...state, newForms]);
-  };
-
-  const handleChangeView = (isAdmin) => {
-    setIsAdmin(isAdmin);
-  };  
-
   return (
-    <div className="app-container">
-      <header className="title-section">
-        <h1 className="title">Ezform & Co.</h1>
-        <div className="button-container">
-          {/* Selecting admin view tab */}
-          <button
-            className={`admin-button${isAdmin ? ' active' : ''}`}
-            onClick={() => handleChangeView(true)}
-          >
-            ADMIN
-          </button>
-          {/* Selecting user view tab */}
-          <button
-            className={`user-button${!isAdmin ? ' active' : ''}`}
-            onClick={() => handleChangeView(false)}
-          >
-            USER
-          </button>
-        </div>
-      </header>
-      <hr className="line" />
-      {isAdmin ? (
-        // Render AdminView and pass the formArray
-        <AdminView employeesList={formInfo} deleteEmployee={deleteEmployee} />
-      ) : (
-        // Render UserView and pass the handleAddForm callback
-        <UserView addEmployeeData={(newForms) => handleAddForm(newForms)}  />
-      )}
-      <footer className="footer-section">
-        <p>@2023 Ezform LLC</p>
-      </footer>
+    <div>
+      <Navbar />
+
+      <LandingPage />
+
+      <EmployeesList employeesList={formInfo} deleteEmployee={deleteEmployee} />
+
+      <Footer />
     </div>
   );
-};
+}
 
 export default App;

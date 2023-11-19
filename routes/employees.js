@@ -4,7 +4,7 @@ require("dotenv").config();
 const db = require("../model/helper")
 
 // Define the SQL query string
-const employees = ('SELECT * FROM personal_info INNER JOIN employment_info ON personal_info.id = employment_info.id;')
+const employees = ('SELECT * FROM personal_info INNER JOIN employment_info ON personal_info.id = employment_info.id;');
 
 //localhost:4000/api 
 router.get('/api', (req, res, next) => {
