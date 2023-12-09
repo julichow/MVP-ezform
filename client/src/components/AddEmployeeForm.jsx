@@ -44,8 +44,7 @@ function AddEmployeeForm({ addEmployeeData }) {
         const newEmployee = await response.json();
         //pass the data back to the LandingPage using addEmployeeData prop
         addEmployeeData(newEmployee);
-      } else {
-        console.log("Failed to submit the form.");
+      } ezzsole.log("Failed to submit the form.");
       }
     } catch (error) {
       console.log(error);
