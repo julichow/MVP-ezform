@@ -37,14 +37,15 @@ function AddEmployeeForm({ addEmployeeData }) {
       },
       body: JSON.stringify(formData),
     };
-
+  
     try {
       const response = await fetch("/api/employees", options);
       if (response.status === 200) {
         const newEmployee = await response.json();
-        //pass the data back to the LandingPage using addEmployeeData prop
+        // pass the data back to the LandingPage using addEmployeeData prop
         addEmployeeData(newEmployee);
-      } ezzsole.log("Failed to submit the form.");
+      } else {
+        console.log("Failed to submit the form.");
       }
     } catch (error) {
       console.log(error);
